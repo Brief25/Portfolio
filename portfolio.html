@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John Doe | Student Portfolio</title>
+
+  <!-- ✅ SEO + META TAGS -->
+  <meta name="description" content="John Doe - Aspiring Web Developer and Computer Science Student Portfolio">
+  <meta property="og:title" content="John Doe | Student Portfolio">
+  <meta property="og:description" content="Portfolio showcasing John Doe's skills, projects, and experience.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-portfolio-link.com">
+  <meta property="og:image" content="https://picsum.photos/600/400?grayscale&random=10">
+  <link rel="icon" href="https://picsum.photos/32/32?grayscale&random=11" type="image/png">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body {
+      background: #000; color: #fff; line-height: 1.6; overflow-x: hidden;
+    }
+
+    /* PARTICLES BACKGROUND */
+    #particles-js {
+      position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1;
+    }
+
+    /* NAVBAR */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; background: rgba(17, 17, 17, 0.85);
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(5px);
+    }
+    nav h1 { font-size: 1.5rem; letter-spacing: 2px; }
+    nav ul { display: flex; list-style: none; }
+    nav ul li { margin-left: 20px; }
+    nav ul li a { color: #fff; text-decoration: none; transition: 0.3s; }
+    nav ul li a:hover { color: #bbb; }
+    .menu-toggle { display: none; cursor: pointer; }
+    .menu-toggle div { width: 25px; height: 3px; background: #fff; margin: 5px; }
+
+    /* HERO */
+    .hero {
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      height: 100vh; text-align: center; padding: 2rem; position: relative;
+    }
+    .hero img {
+      width: 150px; height: 150px; border-radius: 50%; margin-bottom: 20px;
+      border: 3px solid #fff; object-fit: cover; box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    .hero h2 { font-size: 2.5rem; margin-bottom: 10px; }
+    .hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 20px; min-height: 30px; }
+    .hero .btn {
+      display: inline-block; padding: 12px 20px; background: #fff; color: #000;
+      font-weight: bold; border-radius: 5px; text-decoration: none; transition: 0.3s;
+    }
+    .hero .btn:hover { background: #bbb; }
+
+    /* SECTIONS */
+    section { padding: 4rem 2rem; max-width: 1100px; margin: auto; }
+    h2 { font-size: 2rem; margin-bottom: 20px; text-align: center; }
+
+    /* ABOUT */
+    .about p { text-align: center; max-width: 700px; margin: auto; color: #ccc; }
+
+    /* SKILLS */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 20px; }
+    .skill { background: rgba(17,17,17,0.85); padding: 1rem; text-align: center; border-radius: 8px; }
+    .skill:hover { background: rgba(34,34,34,0.9); }
+
+    /* PROJECTS */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .project {
+      position: relative; overflow: hidden; border-radius: 10px;
+    }
+    .project img {
+      width: 100%; border-radius: 10px; display: block;
+    }
+    .overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7); display: flex; flex-direction: column;
+      justify-content: center; align-items: center; opacity: 0; transition: 0.4s;
+    }
+    .overlay a {
+      margin: 5px; padding: 10px 15px; background: #fff; color: #000;
+      text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s;
+    }
+    .overlay a:hover { background: #bbb; }
+    .project:hover .overlay { opacity: 1; }
+
+    /* CONTACT */
+    form { display: flex; flex-direction: column; max-width: 600px; margin: auto; }
+    input, textarea {
+      margin: 10px 0; padding: 12px; border: none; border-radius: 5px;
+      background: rgba(17,17,17,0.9); color: #fff;
+    }
+    button {
+      padding: 12px; border: none; border-radius: 5px; background: #fff; color: #000;
+      font-weight: bold; cursor: pointer; transition: 0.3s;
+    }
+    button:hover { background: #bbb; }
+
+    /* FOOTER */
+    footer { text-align: center; padding: 2rem; background: rgba(17,17,17,0.85); color: #777; }
+
+    /* RESPONSIVE MENU */
+    @media (max-width: 768px) {
+      nav ul { display: none; flex-direction: column; position: absolute; top: 60px; right: 20px; background: #111; padding: 1rem; border-radius: 8px; }
+      nav ul.show { display: flex; }
+      .menu-toggle { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <h1>My Portfolio</h1>
+    <div class="menu-toggle" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+    <ul id="menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="https://picsum.photos/200/200?grayscale&random=1" alt="Profile Image">
+    <h2>Hello, I'm <span style="color:#bbb;">John Doe</span></h2>
+    <p id="typing"></p>
+    <a href="resume.pdf" class="btn" download>📄 Download Resume</a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>I am a Computer Science undergraduate passionate about web development and design. I enjoy building clean, responsive websites and experimenting with new technologies. My career goal is to become a full-stack developer and work on impactful digital products.</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill">HTML5</div>
+      <div class="skill">CSS3</div>
+      <div class="skill">JavaScript (ES6+)</div>
+      <div class="skill">React.js</div>
+      <div class="skill">Node.js</div>
+      <div class="skill">Python</div>
+      <div class="skill">Git & GitHub</div>
+      <div class="skill">Responsive Design</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <img src="https://picsum.photos/400/250?grayscale&random=2" loading="lazy" alt="Portfolio Website">
+        <div class="overlay">
+          <a href="#">View Live</a>
+          <a href="#">View Code</a>
+        </div>
+      </div>
+      <div class="project">
+        <img src="https://picsum.photos/400/250?grayscale&random=3" loading="lazy" alt="To-Do App">
+        <div class="overlay">
+          <a href="#">View Live</a>
+          <a href="#">View Code</a>
+        </div>
+      </div>
+      <div class="project">
+        <img src="https://picsum.photos/400/250?grayscale&random=4" loading="lazy" alt="Weather App">
+        <div class="overlay">
+          <a href="#">View Live</a>
+          <a href="#">View Code</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" name="from_name" placeholder="Your Name" required>
+      <input type="email" name="reply_to" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 John Doe | Computer Science Student</p>
+  </footer>
+
+  <!-- ✅ Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    // ✅ Particles.js config
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 60 },
+        "size": { "value": 3 },
+        "move": { "speed": 1 },
+        "line_linked": { "enable": true, "color": "#bbb" },
+        "color": { "value": "#fff" }
+      }
+    });
+
+    // ✅ Typing Animation
+    const roles = ["Aspiring Web Developer", "Computer Science Student", "Tech Enthusiast"];
+    let i = 0, j = 0, current = "", isDeleting = false;
+    const typing = document.getElementById("typing");
+
+    function type() {
+      current = roles[i];
+      typing.textContent = isDeleting ? current.substring(0, j--) : current.substring(0, j++);
+      if (!isDeleting && j === current.length + 1) { isDeleting = true; setTimeout(type, 1500); return; }
+      if (isDeleting && j === 0) { isDeleting = false; i = (i+1)%roles.length; }
+      setTimeout(type, isDeleting ? 50 : 100);
+    }
+    type();
+
+    // ✅ Responsive Menu
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('show');
+    }
+
+    // ✅ EmailJS integration (replace YOUR_SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY)
+    const form = document.getElementById("contact-form");
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this, "YOUR_PUBLIC_KEY")
+        .then(() => alert("Message sent successfully!"), (err) => alert("Error: " + JSON.stringify(err)));
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</body>
+</html>
